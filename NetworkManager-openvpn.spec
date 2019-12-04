@@ -4,7 +4,7 @@
 #
 Name     : NetworkManager-openvpn
 Version  : 1.8.10
-Release  : 2
+Release  : 3
 URL      : https://download.gnome.org/sources/NetworkManager-openvpn/1.8/NetworkManager-openvpn-1.8.10.tar.xz
 Source0  : https://download.gnome.org/sources/NetworkManager-openvpn/1.8/NetworkManager-openvpn-1.8.10.tar.xz
 Summary  : NetworkManager VPN plugin for OpenVPN
