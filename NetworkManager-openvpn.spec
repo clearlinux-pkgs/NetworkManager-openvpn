@@ -4,7 +4,7 @@
 #
 Name     : NetworkManager-openvpn
 Version  : 1.8.10
-Release  : 3
+Release  : 4
 URL      : https://download.gnome.org/sources/NetworkManager-openvpn/1.8/NetworkManager-openvpn-1.8.10.tar.xz
 Source0  : https://download.gnome.org/sources/NetworkManager-openvpn/1.8/NetworkManager-openvpn-1.8.10.tar.xz
 Summary  : NetworkManager VPN plugin for OpenVPN
@@ -23,10 +23,6 @@ BuildRequires : pkgconfig(NetworkManager)
 BuildRequires : pkgconfig(glib-2.0)
 BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(libnm)
-BuildRequires : pkgconfig(libnm-glib)
-BuildRequires : pkgconfig(libnm-glib-vpn)
-BuildRequires : pkgconfig(libnm-gtk)
-BuildRequires : pkgconfig(libnm-util)
 BuildRequires : pkgconfig(libnma)
 BuildRequires : pkgconfig(libsecret-1)
 
@@ -80,13 +76,15 @@ locales components for the NetworkManager-openvpn package.
 
 %prep
 %setup -q -n NetworkManager-openvpn-1.8.10
+cd %{_builddir}/NetworkManager-openvpn-1.8.10
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1557021328
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1576103908
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -94,21 +92,21 @@ export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
-%configure --disable-static
+%configure --disable-static --without-libnm-glib
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1557021328
+export SOURCE_DATE_EPOCH=1576103908
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/NetworkManager-openvpn
-cp COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-openvpn/COPYING
+cp %{_builddir}/NetworkManager-openvpn-1.8.10/COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-openvpn/7231584ac45906565081b89c0ca8d5fe7f738eb0
 %make_install
 %find_lang NetworkManager-openvpn
 
@@ -123,7 +121,6 @@ cp COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-openvpn/COPYIN
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/NetworkManager/libnm-openvpn-properties.so
 /usr/lib64/NetworkManager/libnm-vpn-plugin-openvpn-editor.so
 /usr/lib64/NetworkManager/libnm-vpn-plugin-openvpn.so
 
@@ -135,7 +132,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-openvpn/COPYIN
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/NetworkManager-openvpn/COPYING
+/usr/share/package-licenses/NetworkManager-openvpn/7231584ac45906565081b89c0ca8d5fe7f738eb0
 
 %files locales -f NetworkManager-openvpn.lang
 %defattr(-,root,root,-)
