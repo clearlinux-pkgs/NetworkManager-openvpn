@@ -4,7 +4,7 @@
 #
 Name     : NetworkManager-openvpn
 Version  : 1.8.16
-Release  : 8
+Release  : 9
 URL      : https://download.gnome.org/sources/NetworkManager-openvpn/1.8/NetworkManager-openvpn-1.8.16.tar.xz
 Source0  : https://download.gnome.org/sources/NetworkManager-openvpn/1.8/NetworkManager-openvpn-1.8.16.tar.xz
 Summary  : No detailed summary available
@@ -19,7 +19,6 @@ BuildRequires : buildreq-gnome
 BuildRequires : gettext
 BuildRequires : intltool
 BuildRequires : perl(XML::Parser)
-BuildRequires : pkgconfig(NetworkManager)
 BuildRequires : pkgconfig(glib-2.0)
 BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(libnm)
@@ -83,7 +82,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1632868665
+export SOURCE_DATE_EPOCH=1645045268
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -103,7 +102,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1632868665
+export SOURCE_DATE_EPOCH=1645045268
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/NetworkManager-openvpn
 cp %{_builddir}/NetworkManager-openvpn-1.8.16/COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-openvpn/7231584ac45906565081b89c0ca8d5fe7f738eb0
