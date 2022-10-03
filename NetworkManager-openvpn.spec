@@ -4,7 +4,7 @@
 #
 Name     : NetworkManager-openvpn
 Version  : 1.10.0
-Release  : 14
+Release  : 15
 URL      : https://download.gnome.org/sources/NetworkManager-openvpn/1.10/NetworkManager-openvpn-1.10.0.tar.xz
 Source0  : https://download.gnome.org/sources/NetworkManager-openvpn/1.10/NetworkManager-openvpn-1.10.0.tar.xz
 Summary  : No detailed summary available
@@ -84,7 +84,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1664161308
+export SOURCE_DATE_EPOCH=1664839615
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -104,7 +104,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1664161308
+export SOURCE_DATE_EPOCH=1664839615
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/NetworkManager-openvpn
 cp %{_builddir}/NetworkManager-openvpn-%{version}/COPYING %{buildroot}/usr/share/package-licenses/NetworkManager-openvpn/7231584ac45906565081b89c0ca8d5fe7f738eb0 || :
